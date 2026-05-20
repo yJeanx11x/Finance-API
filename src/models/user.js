@@ -49,4 +49,4 @@ async function syncDatabase() {
 
 syncDatabase()
 
-module.exports = User
+module.exports = {User, transacoes}
