@@ -28,17 +28,5 @@ const transaction = db.sequelize.define('Transacao', {
     }
 })
 
-async function syncTransac() {
-    try {
-        await transaction.sync({ force: false })
-
-        console.log('Tabela "Transacao" sincronizada com sucesso.')
-
-    } catch (error) {
-        console.error('Erro ao sincronizar a tabela "Transacao":', error)
-    }
-}
-
-syncTransac()
 
 module.exports=transaction

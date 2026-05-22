@@ -1,8 +1,8 @@
 const express=require('express');
 const appRoutes=express.Router();
 
-appRoutes.get('/criar',(req,res)=>{
-    return res.status(200).json({message:'Deu Bom'})
-})
+const authController=require('../controllers/authController')
+
+appRoutes.post('/register', authController.register)
 
 module.exports=appRoutes

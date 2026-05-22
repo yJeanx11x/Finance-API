@@ -31,7 +31,7 @@ User.hasMany(transacoes, {
 
 transacoes.belongsTo(User, {
     foreignKey: 'UsuarioId',
-    as: 'usuario'
+    as: 'User'
 })
 
 async function syncDatabase() {
