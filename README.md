@@ -38,7 +38,7 @@ UsuarioId = req.user.id
 🚨 JWT obrigatório nas rotas
 📌 FUNCIONALIDADES
 🔐 Autenticação
- [] Registro
+ [x] Registro
  [] Login
  [] JWT
 💸 Transações
@@ -52,8 +52,8 @@ UsuarioId = req.user.id
  [] Buscar saldo total
  [] Paginação
 🛡️ SEGURANÇA
- [] bcrypt
+ [x] bcrypt
  [] JWT
- [] Rate limit
- [] Middleware global
- [] Zod
+ [x] Rate limit
+ [x] Middleware global
+ [x] Zod
