@@ -6,8 +6,8 @@ Uma API de controle financeiro pessoal com autenticação JWT.
 
 O usuário poderá:
 
-[] criar conta
-[] fazer login
+[x] criar conta
+[x] fazer login
 [] adicionar ganhos
 [] adicionar despesas
 [] categorizar gastos
@@ -17,33 +17,32 @@ O usuário poderá:
 
 📂 ESTRUTURA DAS TABELAS
 👤 Usuário
-id
-nome
-email
-password
+[x] id
+[x] nome
+[x] email
+[x] password
 💸 Transações
-id
-titulo
-valor
-tipo (entrada/saída)
-categoria
-data
-UsuarioId
+[x] id
+[x] titulo
+[x] valor
+[x] tipo (entrada/saída)
+[x] categoria
+[x] data
+[x] UsuarioId
 🔐 REGRAS IMPORTANTES
 🚨 Cada usuário só vê os próprios dados
-
-
 UsuarioId = req.user.id
+
 🚨 Usuário não pode editar transação de outro
 🚨 JWT obrigatório nas rotas
 📌 FUNCIONALIDADES
 🔐 Autenticação
  [x] Registro
- [] Login
- [] JWT
+ [x] Login
+ [x] JWT
 💸 Transações
  [] Criar
- [] Listar
+ [x] Listar
  [] Atualizar
  [] Deletar
 📊 Extras (DIFERENCIAL)
@@ -53,7 +52,7 @@ UsuarioId = req.user.id
  [] Paginação
 🛡️ SEGURANÇA
  [x] bcrypt
- [] JWT
+ [x] JWT
  [x] Rate limit
  [x] Middleware global
  [x] Zod

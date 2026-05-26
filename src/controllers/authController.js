@@ -12,6 +12,7 @@ const jwt = require('jsonwebtoken')
 // Autentificação zod
 const userSchemas = require('../schemas/userSchema')
 
+
 // Função de registro de usuário
 async function register(req, res, next) {
     const { nome, email, password } = req.body
@@ -64,7 +65,6 @@ async function login(req, res, next) {
 
 
 }
-
 
 
 module.exports = { register, login } 

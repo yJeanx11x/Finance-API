@@ -3,8 +3,8 @@ const jwt = require('jsonwebtoken')
 const { User } = require('../models/user')
 
 async function verificarToken(req, res, next) {
-    const authHeader  = req.headers['authorization']
-    const token = authHeader  && authHeader.split(' ')[1]
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
 
     if (!token) {
         return res.status(401).json({ message: 'Acesso negado' })
@@ -12,7 +12,7 @@ async function verificarToken(req, res, next) {
     try {
         const secret = process.env.JWT_SECRET
 
-        const decoded = jwt.verify(token,secret)
+        const decoded = jwt.verify(token, secret)
 
         const userDb = await User.findByPk(decoded.id)
 
@@ -25,11 +25,11 @@ async function verificarToken(req, res, next) {
         }
         req.userDb = userDb
         next()
-        
+
     } catch (error) {
         return res.status(401).json({ message: 'Token invalido !' })
     }
 
 }
 
-module.exports = {verificarToken}
+module.exports = { verificarToken }
