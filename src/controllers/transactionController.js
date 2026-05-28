@@ -39,24 +39,40 @@ async function newTransaction(req, res, next) {
 }
 
 async function editTransaction(req, res, next) {
-    const { titulo,valor,tipo,categoria} = req.body
+    const { titulo, valor, tipo, categoria } = req.body
     const { id } = req.params
     try {
-        const transaction  = await trasaction.findOne({ where: { id, UsuarioId: req.userDb.id } })
+        const transaction = await trasaction.findOne({ where: { id, UsuarioId: req.userDb.id } })
 
-        if(!transaction ){
-            return res.status(401).json({message:'Transação não encontrada'})
+        if (!transaction) {
+            return res.status(401).json({ message: 'Transação não encontrada' })
         }
-        await transaction .update(
-            {valor, titulo, tipo, categoria}
+        await transaction.update(
+            { valor, titulo, tipo, categoria }
         )
-        return res.status(201).json({ message: 'Atualizado com sucesso', editTras: transaction  })
+        return res.status(201).json({ message: 'Atualizado com sucesso' })
     } catch (error) {
         next(error)
     }
 
 }
 
+async function deleteTransaction(req, res, next) {
+    const { id } = req.params
+    try {
+        const removeTransaction = await transaction.findOne({ where: { id, UsuarioId: req.userDb.id } })
+
+        if (!removeTransaction) {
+            return res.status(404).json({ message: 'Transação não encontrada' })
+        }
+        await removeTransaction.destroy()
+
+        return res.status(200).json({ message: 'Transação deletada' })
+
+    } catch (error) {
+        next(error)
+    }
+}
 
 
-module.exports = { transactions, newTransaction, editTransaction }
+module.exports = { transactions, newTransaction, editTransaction, deleteTransaction }
