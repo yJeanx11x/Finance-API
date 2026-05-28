@@ -18,7 +18,7 @@ appRoutes.post('/login', authController.login)
 
 appRoutes.get('/transactions', jwt.verificarToken, transactionController.transactions)
 appRoutes.post('/newTransaction', jwt.verificarToken, transactionController.newTransaction)
-appRoutes.put('/transaction/:id', jwt.verificarToken, transactionController.editTransaction)
+appRoutes.patch('/transaction/:id', jwt.verificarToken, transactionController.editTransaction)
 appRoutes.delete('/transaction/:id', jwt.verificarToken, transactionController.deleteTransaction)
 
 module.exports = appRoutes
