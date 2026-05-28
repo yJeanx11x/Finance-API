@@ -6,4 +6,4 @@ const limit = ratelimit({
     message: 'Passou dos limitesLimite de requisições excedido. Tente novamente mais tarde.'
 })
 
-module.exports=ratelimit
+module.exports=limit

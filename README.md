@@ -8,7 +8,7 @@ O usuário poderá:
 
 [x] criar conta
 [x] fazer login
-[] adicionar ganhos
+[x] adicionar ganhos
 [] adicionar despesas
 [] categorizar gastos
 [] visualizar saldo
@@ -41,7 +41,7 @@ UsuarioId = req.user.id
  [x] Login
  [x] JWT
 💸 Transações
- [] Criar
+ [x] Criar
  [x] Listar
  [] Atualizar
  [] Deletar

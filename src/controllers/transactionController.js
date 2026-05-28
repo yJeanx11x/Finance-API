@@ -5,7 +5,7 @@ const trasaction = require('../models/Transaction')
 async function transactions(req, res, next) {
 
     try {
-        const saldo = await trasaction.findAll({where: {UsuarioId: req.userDb.id}})
+        const saldo = await trasaction.findAll({ where: { UsuarioId: req.userDb.id }, attributes: ["titulo", "valor", "tipo", "categoria"] })
         if (saldo == null) {
             return res.status(200).json({ message: 'Nenhum registro de trasferencia' })
         }
@@ -31,11 +31,32 @@ async function newTransaction(req, res, next) {
             UsuarioId: req.userDb.id
         })
 
-        return res.status(201).json({ message: 'Trasferencia com sucesso'})
+        return res.status(201).json({ message: 'Trasferencia com sucesso' })
     } catch (error) {
         next(error)
     }
 
 }
 
-module.exports = { transactions, newTransaction }
+async function editTransaction(req, res, next) {
+    const { titulo,valor,tipo,categoria} = req.body
+    const { id } = req.params
+    try {
+        const transaction  = await trasaction.findOne({ where: { id, UsuarioId: req.userDb.id } })
+
+        if(!transaction ){
+            return res.status(401).json({message:'Transação não encontrada'})
+        }
+        await transaction .update(
+            {valor, titulo, tipo, categoria}
+        )
+        return res.status(201).json({ message: 'Atualizado com sucesso', editTras: transaction  })
+    } catch (error) {
+        next(error)
+    }
+
+}
+
+
+
+module.exports = { transactions, newTransaction, editTransaction }

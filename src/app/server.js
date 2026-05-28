@@ -16,6 +16,9 @@ app.use(routes)
 // Middleware de tratamento de erros global
 app.use(erroGlobal)
 
+
+
+
 app.listen(process.env.PORT, () => {
     console.log('Server Rodando com sucesso! :D')
 })
