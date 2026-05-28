@@ -1,5 +1,7 @@
-const { where } = require('sequelize')
+
 const trasaction = require('../models/Transaction')
+
+const transactionSchema = require('../schemas/transactionSchema')
 
 //Listar todas as trasferencias
 async function transactions(req, res, next) {
@@ -19,14 +21,16 @@ async function transactions(req, res, next) {
 //Criar nova trasferencia
 async function newTransaction(req, res, next) {
     const { titulo, valor, tipo, categoria } = req.body
+    const z = transactionSchema.safeParse(req.body)
+
 
     try {
         await trasaction.create({
 
-            titulo: titulo,
-            valor: valor,
-            tipo: tipo,
-            categoria: categoria,
+            titulo: z.data.titulo,
+            valor: z.data.valor,
+            tipo: z.data.tipo,
+            categoria: z.data.categoria,
 
             UsuarioId: req.userDb.id
         })
@@ -38,9 +42,12 @@ async function newTransaction(req, res, next) {
 
 }
 
+//Editar trasferencia
 async function editTransaction(req, res, next) {
     const { titulo, valor, tipo, categoria } = req.body
     const { id } = req.params
+    const z = transactionSchema.safeParse(req.body)
+
     try {
         const transaction = await trasaction.findOne({ where: { id, UsuarioId: req.userDb.id } })
 
@@ -48,7 +55,12 @@ async function editTransaction(req, res, next) {
             return res.status(401).json({ message: 'Transação não encontrada' })
         }
         await transaction.update(
-            { valor, titulo, tipo, categoria }
+            {
+                valor: z.data.valor,
+                titulo: z.data.titulo,
+                tipo: z.data.tipo,
+                categoria: z.data.categoria
+            }
         )
         return res.status(201).json({ message: 'Atualizado com sucesso' })
     } catch (error) {
@@ -57,6 +69,7 @@ async function editTransaction(req, res, next) {
 
 }
 
+//Deletar trasferencia
 async function deleteTransaction(req, res, next) {
     const { id } = req.params
     try {
