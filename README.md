@@ -12,8 +12,8 @@ O usuário poderá:
 [] adicionar despesas
 [] categorizar gastos
 [] visualizar saldo
-[] editar transações
-[] deletar transações
+[x] editar transações
+[x] deletar transações
 
 📂 ESTRUTURA DAS TABELAS
 👤 Usuário
@@ -43,8 +43,8 @@ UsuarioId = req.user.id
 💸 Transações
  [x] Criar
  [x] Listar
- [] Atualizar
- [] Deletar
+ [x] Atualizar
+ [x] Deletar
 📊 Extras (DIFERENCIAL)
  [] Filtrar por categoria
  [] Filtrar por data
