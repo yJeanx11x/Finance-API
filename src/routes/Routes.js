@@ -7,6 +7,8 @@ const transactionController = require('../controllers/transactionController')
 const jwt = require('../middlewares/jwt')
 const limiter = require('../middlewares/rateLimit')
 
+appRoutes.use(limiter)
+
 // appRoutes.use(limiter)
 
 appRoutes.post('/register', authController.register)
