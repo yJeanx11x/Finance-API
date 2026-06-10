@@ -7,7 +7,7 @@ const transactionController = require('../controllers/transactionController')
 const jwt = require('../middlewares/jwt')
 const limiter = require('../middlewares/rateLimit')
 
-appRoutes.use(limiter)
+// appRoutes.use(limiter)
 
 
 appRoutes.post('/register', authController.register)
@@ -19,5 +19,6 @@ appRoutes.get('/transaction', jwt.verificarToken, transactionController.transact
 appRoutes.post('/transaction', jwt.verificarToken, transactionController.newTransaction)
 appRoutes.patch('/transaction/:id', jwt.verificarToken, transactionController.editTransaction)
 appRoutes.delete('/transaction/:id', jwt.verificarToken, transactionController.deleteTransaction)
+appRoutes.post('/transaction/categoria',jwt.verificarToken,transactionController.filterCategory)
 
 module.exports = appRoutes

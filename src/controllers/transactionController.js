@@ -1,4 +1,5 @@
 
+const { where } = require('sequelize')
 const trasaction = require('../models/Transaction')
 
 const transactionSchema = require('../schemas/transactionSchema')
@@ -87,5 +88,25 @@ async function deleteTransaction(req, res, next) {
     }
 }
 
+// filtar categoria 
+async function filterCategory(req, res, next) {
 
-module.exports = { transactions, newTransaction, editTransaction, deleteTransaction }
+    const { categoria } = req.body
+
+    try {
+        const categorias = await trasaction.findAll({ where: { categoria, UsuarioId: req.userDb.id }, attributes: ['titulo', 'valor', 'categoria'] })
+
+
+        if (!categorias) {
+            return res.status(401).json({ message: `Categoria não encotrada` })
+        }
+        return res.status(200).json(categorias)
+    } catch (error) {
+        next(error)
+    }
+
+
+}
+
+
+module.exports = { transactions, newTransaction, editTransaction, deleteTransaction, filterCategory }
