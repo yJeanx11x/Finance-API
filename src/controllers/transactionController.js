@@ -88,18 +88,19 @@ async function deleteTransaction(req, res, next) {
     }
 }
 
-// filtar categoria 
+// filtrar categoria 
 async function filterCategory(req, res, next) {
 
-    const { categoria } = req.body
+    const { categoria, datas } = req.body
 
     try {
         const categorias = await trasaction.findAll({ where: { categoria, UsuarioId: req.userDb.id }, attributes: ['titulo', 'valor', 'categoria'] })
 
-
         if (!categorias) {
             return res.status(401).json({ message: `Categoria não encotrada` })
         }
+       
+
         return res.status(200).json(categorias)
     } catch (error) {
         next(error)
@@ -107,6 +108,9 @@ async function filterCategory(req, res, next) {
 
 
 }
+
+
+
 
 
 module.exports = { transactions, newTransaction, editTransaction, deleteTransaction, filterCategory }

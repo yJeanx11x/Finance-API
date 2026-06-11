@@ -1,58 +1,159 @@
-💡 Projeto: Finance API
+# 🚀 Finance API
 
-Uma API de controle financeiro pessoal com autenticação JWT.
+API REST para controle financeiro pessoal desenvolvida com Node.js, Express, Sequelize e MySQL. O sistema permite que usuários gerenciem suas receitas e despesas de forma segura através de autenticação JWT.
 
-🧠 O QUE O SISTEMA FAZ
+---
 
-O usuário poderá:
+## 📋 Sobre o Projeto
 
-[x] criar conta
-[x] fazer login
-[x] adicionar ganhos
-[] adicionar despesas
-[] categorizar gastos
-[] visualizar saldo
-[x] editar transações
-[x] deletar transações
+A Finance API foi criada para permitir que cada usuário tenha controle total sobre suas movimentações financeiras, mantendo os dados protegidos através de autenticação e autorização.
 
-📂 ESTRUTURA DAS TABELAS
-👤 Usuário
-[x] id
-[x] nome
-[x] email
-[x] password
-💸 Transações
-[x] id
-[x] titulo
-[x] valor
-[x] tipo (entrada/saída)
-[x] categoria
-[x] data
-[x] UsuarioId
-🔐 REGRAS IMPORTANTES
-🚨 Cada usuário só vê os próprios dados
-UsuarioId = req.user.id
+Cada usuário possui acesso apenas às suas próprias transações, garantindo privacidade e segurança.
 
-🚨 Usuário não pode editar transação de outro
-🚨 JWT obrigatório nas rotas
-📌 FUNCIONALIDADES
-🔐 Autenticação
- [x] Registro
- [x] Login
- [x] JWT
-💸 Transações
- [x] Criar
- [x] Listar
- [x] Atualizar
- [x] Deletar
-📊 Extras (DIFERENCIAL)
- [] Filtrar por categoria
- [] Filtrar por data
- [] Buscar saldo total
- [] Paginação
-🛡️ SEGURANÇA
- [x] bcrypt
- [x] JWT
- [x] Rate limit
- [x] Middleware global
- [x] Zod
+---
+
+## 🛠 Tecnologias Utilizadas
+
+* Node.js
+* Express
+* Sequelize
+* MySQL
+* JWT (JSON Web Token)
+* bcrypt
+* Zod
+* Express Rate Limit
+
+---
+
+## ✨ Funcionalidades
+
+### 🔐 Autenticação
+
+* Cadastro de usuários
+* Login com JWT
+* Senhas criptografadas com bcrypt
+* Rotas protegidas por autenticação
+
+### 💸 Transações Financeiras
+
+* Criar transações
+* Listar transações
+* Atualizar transações
+* Excluir transações
+* Filtrar transações por categoria
+
+### 🔒 Segurança
+
+* JWT para autenticação
+* bcrypt para criptografia de senhas
+* Rate Limit para proteção contra spam e brute force
+* Middleware global para tratamento de erros
+* Validação de dados com Zod
+
+---
+
+## 📂 Estrutura do Banco de Dados
+
+### 👤 Usuários
+
+| Campo    | Tipo    |
+| -------- | ------- |
+| id       | Integer |
+| nome     | String  |
+| email    | String  |
+| password | String  |
+
+### 💸 Transações
+
+| Campo     | Tipo          |
+| --------- | ------------- |
+| id        | Integer       |
+| titulo    | String        |
+| valor     | Decimal       |
+| tipo      | Entrada/Saída |
+| categoria | String        |
+| UsuarioId | Integer       |
+
+---
+
+## 🔐 Regras de Negócio
+
+* Cada usuário pode visualizar apenas suas próprias transações.
+* Usuários não podem editar transações de outros usuários.
+* Usuários não podem excluir transações de outros usuários.
+* Todas as rotas de transações exigem autenticação JWT.
+
+---
+
+## 📌 Endpoints
+
+### Usuários
+
+| Método | Rota      | Descrição      |
+| ------ | --------- | -------------- |
+| POST   | /register | Criar usuário  |
+| POST   | /login    | Realizar login |
+
+### Transações
+
+| Método | Rota                              | Descrição             |
+| ------ | --------------------------------- | --------------------- |
+| POST   | /transaction                     | Criar transação       |
+| GET    | /transaction                     | Listar transações     |
+| PUT    | /transaction/:id                 | Atualizar transação   |
+| DELETE | /transaction/:id                 | Excluir transação     |
+| GET    | /transaction/categoria           | Filtrar por categoria |
+
+---
+
+## ⚙️ Instalação
+
+Clone o repositório:
+
+```bash
+git clone github.com/yJeanx11x/Finance-API.git
+```
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+Configure o arquivo `.env`:
+
+```env
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=sua_senha
+DB_NAME=finance_api
+
+SECRET=sua_chave_jwt
+```
+
+Execute o projeto:
+
+```bash
+npm start
+```
+
+---
+
+## 🎯 Objetivos do Projeto
+
+Este projeto foi desenvolvido com foco em:
+
+* APIs REST
+* Autenticação JWT
+* Relacionamentos com Sequelize
+* Boas práticas de backend
+* Segurança de aplicações
+* Organização em arquitetura MVC
+
+---
+
+## 👨‍💻 Autor
+
+Jean Lucas de Souza Araújo
+
+Estudante de Engenharia de Software e Desenvolvedor Backend em formação, focado em Node.js, JavaScript, Express, Sequelize e MySQL.
